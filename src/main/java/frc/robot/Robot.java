@@ -37,13 +37,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    falcon = new WPI_TalonFX(0);
-    falcon2 = new WPI_TalonFX(1);
-    falcon3 = new WPI_TalonFX(1);
-    falcon4 = new WPI_TalonFX(1);
+    falcon = new WPI_TalonFX(1);
+    falcon2 = new WPI_TalonFX(2);
+    falcon3 = new WPI_TalonFX(3);
+    falcon4 = new WPI_TalonFX(4);
     start = new TrapezoidProfile.State(0, 0);
-    end = new TrapezoidProfile.State(5.0, 0);
-    constraints = new TrapezoidProfile.Constraints(2, 0.2);
+    end = new TrapezoidProfile.State(2.0, 0);
+    constraints = new TrapezoidProfile.Constraints(0.2, 0.2);
     profile = new TrapezoidProfile(constraints, end, start);
     double kp = 0.1, ki = 0, kd = 0;
     controller = new PIDController(kp, ki, kd);
