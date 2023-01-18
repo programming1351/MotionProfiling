@@ -1,9 +1,7 @@
-
 package frc.robot;
 
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.*;
@@ -56,6 +54,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+
   }
 
 
