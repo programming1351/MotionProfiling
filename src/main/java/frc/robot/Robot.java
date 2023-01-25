@@ -29,10 +29,7 @@ public class Robot extends TimedRobot {
   Spark sparkLeft;
   Encoder encoder;
   double kp, ki, kd;
-
-  PIDController controller;
-
-
+  int counter;
 
   @Override
   public void robotInit() {
@@ -56,6 +53,9 @@ public class Robot extends TimedRobot {
     //ki kp kd vals
 
     controller = new PIDController(kp, ki, kd);
+    //PID controller initialization
+
+    counter = 0;
   }
 
 
@@ -65,9 +65,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    //first add arm raising before all following code
 
-    gfjklgfaghp
+    //first add arm raising before all following code OR have it preset up
+
+    if (encoder.getDistance() <= 22.50 * Constants.TICKS_PER_INCH) {
+      TrapezoidProfile.State profileOutput = profile.calculate(0.02 * counter);
+      controller.setSetpoint(22.50 * Constants.TICKS_PER_INCH);
+      double output = controller.calculate(encoder.getDistance());
+      sparkRight.set(output);
+      sparkLeft.set(output);
+      counter++;
+    }
+
   }
 
 
