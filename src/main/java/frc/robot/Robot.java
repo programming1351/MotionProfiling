@@ -31,6 +31,10 @@ public class Robot extends TimedRobot {
   double kp, ki, kd;
   int counter;
 
+
+
+
+
   @Override
   public void robotInit() {
     sparkRight = new Spark(0);
