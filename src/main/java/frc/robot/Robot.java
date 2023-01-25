@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
     controller = new PIDController(kp, ki, kd);
   }
 
-uhuhuhf
+
   @Override
   public void robotPeriodic() {}
 
@@ -66,7 +66,7 @@ uhuhuhf
   public void autonomousInit() {
     //first add arm raising before all following code
 
-    gfjklgfaghp
+
   }
 
 
