@@ -28,6 +28,9 @@ public class Robot extends TimedRobot {
   Encoder encoder;
   double kp, ki, kd;
 
+  PIDController controller;
+
+
 
   @Override
   public void robotInit() {
@@ -49,7 +52,8 @@ public class Robot extends TimedRobot {
     ki = 0;
     kd = 0;
     //ki kp kd vals
-    
+
+    controller = new PIDController(kp, ki, kd);
   }
 
 
@@ -71,7 +75,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    t = 0;
+
   }
 
 
