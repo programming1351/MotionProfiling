@@ -30,7 +30,6 @@ public class Robot extends TimedRobot {
   Encoder encoder;
   double kp, ki, kd;
 
-  PIDController controller;
 
 
 
@@ -58,7 +57,7 @@ public class Robot extends TimedRobot {
     controller = new PIDController(kp, ki, kd);
   }
 
-
+uhuhuhf
   @Override
   public void robotPeriodic() {}
 
