@@ -18,6 +18,8 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  PIDController controller;
+
   TrapezoidProfile.State start;
   TrapezoidProfile.State end;
   TrapezoidProfile.Constraints constraints;
@@ -49,7 +51,8 @@ public class Robot extends TimedRobot {
     ki = 0;
     kd = 0;
     //ki kp kd vals
-    
+
+    controller = new PIDController(kp, ki, kd);
   }
 
 
@@ -59,7 +62,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    //first add arm raising before all following code
 
+    
   }
 
 
@@ -71,7 +76,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    t = 0;
+
   }
 
 
