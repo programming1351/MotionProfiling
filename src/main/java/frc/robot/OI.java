@@ -12,10 +12,10 @@ public class OI {
         return instance;
     }
     private XboxController controller;
-    public XboxController getController(0) {
+
+    public XboxController getController() {
         return controller;
     }
-
 
     public void setupControls() {
     }
