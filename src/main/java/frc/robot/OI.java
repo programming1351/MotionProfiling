@@ -13,4 +13,9 @@ public class OI {
     }
     private XboxController controller;
 
+    public XboxController getController() {
+        return controller;
+    }
+
+
 }
