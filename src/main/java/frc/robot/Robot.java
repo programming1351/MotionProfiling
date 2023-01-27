@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Robot extends TimedRobot {
+public class Robot<counter> extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -29,6 +29,8 @@ public class Robot extends TimedRobot {
   Spark sparkLeft;
   Encoder encoder;
   double kp, ki, kd;
+
+
 
 
 
@@ -57,7 +59,15 @@ public class Robot extends TimedRobot {
     controller = new PIDController(kp, ki, kd);
 
 
+
   }
+
+
+    //PID controller initialization
+
+    int counter = 0;
+
+
 
   @Override
   public void robotPeriodic() {}
@@ -65,8 +75,18 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    //first add arm raising before all following code
 
+
+    //first add arm raising before all following code OR have it preset up
+
+    if (encoder.getDistance() <= 22.50 * Constants.TICKS_PER_INCH) {
+      TrapezoidProfile.State profileOutput = profile.calculate(0.02 * counter);
+      controller.setSetpoint(22.50 * Constants.TICKS_PER_INCH);
+      double output = controller.calculate(encoder.getDistance());
+      sparkRight.set(output);
+      sparkLeft.set(output);
+      counter++;
+    }
 
 
   }
