@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -31,12 +32,12 @@ public class Robot extends TimedRobot {
   double kp, ki, kd;
   int counter;
 
-
-
-
-
   @Override
   public void robotInit() {
+
+      OI.getInstance().setupControls();
+      Arm.getInstance().initHardware();
+
     sparkRight = new Spark(0);
     sparkLeft = new Spark(1);
     //initializing sparks
@@ -69,23 +70,31 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-
-    //first add arm raising before all following code OR have it preset up
-
-    if (encoder.getDistance() <= 22.50 * Constants.TICKS_PER_INCH) {
-      TrapezoidProfile.State profileOutput = profile.calculate(0.02 * counter);
-      controller.setSetpoint(22.50 * Constants.TICKS_PER_INCH);
-      double output = controller.calculate(encoder.getDistance());
-      sparkRight.set(output);
-      sparkLeft.set(output);
-      counter++;
-    }
-
   }
 
 
   @Override
   public void autonomousPeriodic() {
+
+    //first add arm raising before all following code OR have it preset up
+
+    if (encoder.getDistance() <= 22.50 * 12 * Constants.TICKS_PER_INCH) {
+      //if the desired distance has not been reached yet, use PID
+      TrapezoidProfile.State profileOutput = profile.calculate(0.02 * counter);
+      controller.setSetpoint(22.50 * 12 * Constants.TICKS_PER_INCH);
+      double output = controller.calculate(encoder.getDistance());
+      sparkRight.set(output);
+      sparkLeft.set(output);
+      counter++;
+      //counts number of times function is executed
+    }
+
+    if (encoder.getDistance() >= 22.50 * 12 * Constants.TICKS_PER_INCH) {
+      //if the distance has been reached, lift arm and shoot the ball
+
+        Arm.getInstance().armUp();
+
+    }
 
   }
 
@@ -93,12 +102,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
 
+      CommandScheduler.getInstance().schedule(new ArmCommand());
+
   }
 
 
 
   @Override
   public void teleopPeriodic() {
+
+
 
   }
 
