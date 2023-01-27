@@ -38,6 +38,8 @@ public class Robot<counter> extends TimedRobot {
       OI.getInstance().setupControls();
       Arm.getInstance().initHardware();
       Autonomous.getInstance().initHardware();
+      DriveTrain.getInstance().initHardware();
+      IntakeShooter.getInstance().initHardware();
 
   }
 
@@ -64,6 +66,9 @@ public class Robot<counter> extends TimedRobot {
   public void teleopInit() {
 
       CommandScheduler.getInstance().schedule(new ArmCommand());
+      CommandScheduler.getInstance().schedule(new AutonomousCommand());
+      CommandScheduler.getInstance().schedule(new IntakeShooterCommand());
+      CommandScheduler.getInstance().schedule(new TankDriveCommand());
 
   }
 
