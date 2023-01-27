@@ -22,17 +22,23 @@ public class DriveTrain extends SubsystemBase{
         SparkRight = new Spark(Constants.RIGHT_MOTOR_ID);
 
     }
-
-
-
-
-
-
-    public void setMotors(double rightVal, double leftVal){
-        SparkLeft.set(leftVal);
-        SparkRight.set(rightVal);
+    public void setSparkLeft(double val){
+        SparkLeft.set(val);
     }
-    
+
+    public void setSparkRight(double val){
+        SparkRight.set(val);
+    }
+
+
+
+
+
+
+    public void setMotors(double val){
+        SparkLeft.set(val);
+        SparkRight.set(val);
+    }
     public void updateDashboard() {
 
     }

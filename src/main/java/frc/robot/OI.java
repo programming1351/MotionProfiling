@@ -16,9 +16,5 @@ public class OI {
         return controller;
     }
 
-    public XboxController getController() {
-        return controller;
-    }
-
 
 }
