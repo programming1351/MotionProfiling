@@ -30,7 +30,6 @@ public class IntakeShooterCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        CommandScheduler.getInstance().schedule(new IntakeShooterCommand());
 
     }
 

@@ -1,6 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 public class OI {
     private static OI instance;
@@ -11,13 +12,15 @@ public class OI {
         }
         return instance;
     }
+
     private XboxController controller;
+
+    public void setupControls() {
+        controller = new XboxController(0);
+    }
 
     public XboxController getController() {
         return controller;
-    }
-
-    public void setupControls() {
     }
 
 }
