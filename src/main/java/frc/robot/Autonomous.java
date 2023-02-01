@@ -67,13 +67,6 @@ public class Autonomous extends SubsystemBase {
             counter++;
             //counts number of times function is executed
         }
-
-        if (encoder.getDistance() >= distance_in_feet * 12 * Constants.TICKS_PER_INCH) {
-            //if the distance has been reached, lift arm and shoot the ball
-
-            Arm.getInstance().armUp();
-
-        }
     }
 
 }
