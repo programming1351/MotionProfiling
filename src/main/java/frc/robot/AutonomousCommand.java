@@ -10,40 +10,49 @@ public class AutonomousCommand extends CommandBase {
         addRequirements(Autonomous.getInstance());
     }
 
-    double time;
+    double currentTime;
+
+    double timeToGoal;
+
+    double timeShooter;
 
     @Override
     public void initialize() {
-        time = 0;
+        currentTime = 0;
         //measures amount of time
+
+        timeShooter = 0;
+        //to be tuned
+
+        timeToGoal = 0;
+        //to be tuned
     }
 
     @Override
     public void execute() {
-        Autonomous.getInstance().PIDMoveForward(22.5);
+        if (currentTime < timeToGoal) {
+            //if the current time is less than the time to get to goal, move forward
+            Autonomous.getInstance().moveForward();
+        }
+
+        if (currentTime <= timeToGoal) {
+            IntakeShooter.getInstance().Intake();
+            //if the current time is less than the time to goal, keep the intake running
+        }
 
         //val of time to be measured when testing
-        if (time < 2) {
+        if (currentTime < timeShooter) {
             //if the amount of time it takes to bring the arm up has not been reached...
-            IntakeShooter.getInstance().Intake();
-            //keep intake running and...
             Arm.getInstance().armUp();
             //keep raising the arm
         }
 
-        if (Autonomous.getInstance().encoder.getDistance() >= 22.5) {
-            //if the distance needed to be moved to get to the goal has been reached...
-            if (time >= 2) {
-                //and if the time it takes to bring the arm up has been reached...
-                Arm.getInstance().armStationary();
-                //stop the arm movement and...
-                IntakeShooter.getInstance().Shooter();
-                //shoot the ball
-            }
+        if (currentTime > timeToGoal) {
+            IntakeShooter.getInstance().Shooter();
         }
 
-        time += 0.02;
-        //increases the time counter by 0.02 (it cycles through execute() every 0.02 seconds
+        currentTime += 0.2;
+        //increases the time counter by 0.2 (it cycles through execute() every 0.2 seconds
 
     }
 
