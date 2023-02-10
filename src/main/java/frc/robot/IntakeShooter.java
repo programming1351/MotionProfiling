@@ -25,6 +25,14 @@ public class IntakeShooter extends SubsystemBase {
         sparkIntake = new Spark(4);
     }
 
+    public void Intake() {
+        sparkIntake.set(0.2);
+    }
+
+    public void Shooter() {
+        sparkIntake.set(-0.2);
+    }
+
     public void IntakeShooterControl() {
         if (controller.getLeftBumperPressed()) {
             sparkIntake.set(-0.2);

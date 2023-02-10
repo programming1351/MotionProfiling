@@ -20,9 +20,7 @@ public class Arm extends SubsystemBase {
         arm = new Spark(3);
     }
 
-    public void armStationary() {
-        arm.set(0);
-    }
+    public void armStationary() {arm.set(0);}
 
     public void armUp() {
         arm.set(0.2);
