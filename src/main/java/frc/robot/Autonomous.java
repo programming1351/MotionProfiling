@@ -23,8 +23,7 @@ public class Autonomous extends SubsystemBase {
     }
 
     public void moveForward() {
-        DriveTrain.getInstance().SparkRight.set(0.2);
-        DriveTrain.getInstance().SparkLeft.set(0.2);
+        DriveTrain.getInstance().setMotors(0.2,0.2);
     }
 
 
