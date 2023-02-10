@@ -14,16 +14,20 @@ public class DriveTrain extends SubsystemBase{
         return instance;
     }
 
-    Spark SparkLeft, SparkRight;
+    Spark SparkLeftForward, SparkLeftBack, SparkRightForward, SparkRightBack;
 
     public void initHardware() {
-        SparkLeft = new Spark(Constants.LEFT_MOTOR_ID);
-        SparkRight = new Spark(Constants.RIGHT_MOTOR_ID);
+        SparkLeftForward = new Spark(0);
+        SparkLeftBack = new Spark(1);
+        SparkRightForward = new Spark(2);
+        SparkRightBack = new Spark(3);
         //initializing sparks
     }
 
     public void setMotors(double rightVal, double leftVal){
-        SparkLeft.set(leftVal);
-        SparkRight.set(rightVal);
+        SparkRightForward.set(rightVal);
+        SparkRightBack.set(rightVal);
+        SparkLeftBack.set(leftVal);
+        SparkLeftForward.set(leftVal);
     }
 }
