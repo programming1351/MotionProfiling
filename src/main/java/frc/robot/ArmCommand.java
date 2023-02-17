@@ -9,28 +9,34 @@ public class ArmCommand extends CommandBase {
         addRequirements(Arm.getInstance());
     }
 
+    boolean AButton;
+    boolean BButton;
+
     @Override
     public void initialize() {
-        super.initialize();
+        AButton = OI.getInstance().getController().getAButtonPressed();
+        BButton = OI.getInstance().getController().getBButtonPressed();
     }
 
     @Override
     public void execute() {
-        if (OI.getInstance().getController().getAButtonPressed()) {
+
+        if (AButton && BButton) {
+            Arm.getInstance().armStationary();
+        }
+
+        if (AButton) {
             Arm.getInstance().armUp();
         }
 
-        if (OI.getInstance().getController().getAButtonReleased()) {
-            Arm.getInstance().armStationary();
-        }
-
-        if (OI.getInstance().getController().getBButtonPressed()) {
+        if (BButton) {
             Arm.getInstance().armDown();
         }
 
-        if (OI.getInstance().getController().getBButtonReleased()) {
+        else {
             Arm.getInstance().armStationary();
         }
+
     }
 
     @Override
