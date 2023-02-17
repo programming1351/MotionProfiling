@@ -1,8 +1,7 @@
 package frc.robot;
-import edu.wpi.first.wpilibj.GenericHID;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase{
@@ -14,20 +13,22 @@ public class DriveTrain extends SubsystemBase{
         return instance;
     }
 
-    Spark SparkLeftForward, SparkLeftBack, SparkRightForward, SparkRightBack;
+    Talon TalonLeftForward, TalonLeftBack, TalonRightForward, TalonRightBack;
 
     public void initHardware() {
-        SparkLeftForward = new Spark(0);
-        SparkLeftBack = new Spark(1);
-        SparkRightForward = new Spark(2);
-        SparkRightBack = new Spark(3);
+        Talon talon;
+        talon = new Talon(0);
+        TalonLeftForward = new Talon(0);
+        TalonLeftBack = new Talon(1);
+        TalonRightForward = new Talon(2);
+        TalonRightBack = new Talon(3);
         //initializing sparks
     }
 
     public void setMotors(double rightVal, double leftVal){
-        SparkRightForward.set(rightVal);
-        SparkRightBack.set(rightVal);
-        SparkLeftBack.set(leftVal);
-        SparkLeftForward.set(leftVal);
+        TalonRightForward.set(rightVal);
+        TalonRightBack.set(rightVal);
+        TalonLeftBack.set(leftVal);
+        TalonLeftForward.set(leftVal);
     }
 }

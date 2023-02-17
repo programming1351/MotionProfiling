@@ -25,6 +25,4 @@ public class Autonomous extends SubsystemBase {
     public void moveForward() {
         DriveTrain.getInstance().setMotors(0.2,0.2);
     }
-
-
 }
