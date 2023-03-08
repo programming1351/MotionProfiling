@@ -16,6 +16,8 @@ public class AutonomousCommand extends CommandBase {
 
     double timeShooter;
 
+    int timeLimit;
+
     @Override
     public void initialize() {
         currentTime = 0;
@@ -26,6 +28,9 @@ public class AutonomousCommand extends CommandBase {
 
         timeToGoal = 0;
         //to be tuned
+
+        timeLimit = 16;
+        //total auton time
     }
 
     @Override
@@ -41,7 +46,7 @@ public class AutonomousCommand extends CommandBase {
         }
 
         //val of time to be measured when testing
-        if (currentTime < timeShooter) {
+        if (currentTime < timeLimit) {
             //if the amount of time it takes to bring the arm up has not been reached...
             Arm.getInstance().armUp();
             //keep raising the arm

@@ -16,8 +16,6 @@ public class DriveTrain extends SubsystemBase{
     Talon TalonLeftForward, TalonLeftBack, TalonRightForward, TalonRightBack;
 
     public void initHardware() {
-        Talon talon;
-        talon = new Talon(0);
         TalonLeftForward = new Talon(0);
         TalonLeftBack = new Talon(1);
         TalonRightForward = new Talon(2);

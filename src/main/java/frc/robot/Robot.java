@@ -48,7 +48,6 @@ public class Robot<counter> extends TimedRobot {
   public void teleopInit() {
 
       CommandScheduler.getInstance().schedule(new ArmCommand());
-      CommandScheduler.getInstance().schedule(new AutonomousCommand());
       CommandScheduler.getInstance().schedule(new IntakeShooterCommand());
       CommandScheduler.getInstance().schedule(new DriveTrainCommand());
 

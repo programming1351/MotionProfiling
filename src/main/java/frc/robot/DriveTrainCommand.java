@@ -27,7 +27,6 @@ public class DriveTrainCommand extends CommandBase {
     public void execute() {
 
         // -0.1 and 0.1 accounts for deadzone
-        // x_val represents the left
 
         if (leftMotorVal > -0.1 && leftMotorVal < 0.1 && rightMotorVal > -0.1 && rightMotorVal < 0.1) {
             //if deadzone values are true, set both x and y to 0
